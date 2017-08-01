@@ -1,0 +1,15 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+*.mp4
+*.avi
+video_demo/images/*
+*.pgm
+car_detection/CarData
+car-examples/CarData

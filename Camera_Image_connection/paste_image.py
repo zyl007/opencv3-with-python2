@@ -28,7 +28,7 @@ def paste_by_size(out_size, imgs):
     new_img = Image.new('RGB', out_size)
     frist_x, frist_y = 0, 0
     tmp_x, tmp_y = 0,0
-    # todo 图片拼接核心功能
+    # todo 规范命名, 计算新坐标
     # 按行拼接
     # 记录每一行第一个图的坐标 ，便于下次计算
     num = 0
@@ -49,14 +49,14 @@ def paste_by_size(out_size, imgs):
             tmp_y += t_w
             frist_x = max(frist_x, tmp_x + t_h)
         else:
-            # new_img.save('new_img_%d.jpg'%num)
+            new_img.save('new_img_%d.jpg'%num)
             new_img.show()
             print('new picture')
             new_img = Image.new('RGB', out_size)
             frist_x, frist_y = 0, 0
             tmp_x, tmp_y = 0, 0
         num += 1
-
+    new_img.save('new_img_%d.jpg'%num)
     return new_img
 
 
@@ -84,8 +84,9 @@ def paste_fixed_windows(out_size, imgs):
 
 def main_test():
     im_2 = Image.open('test_images/test.png')
-    imgs = [im_2.resize((930,500)), im_2, im_2, im_2.resize((800,300)), im_2, im_2, im_2.resize((250,300)), im_2.resize((250,295)), \
-            im_2, im_2, im_2, im_2, im_2, im_2,im_2,im_2,im_2]
+    im_3 = Image.open('test_images/3.png')
+    imgs = [im_2.resize((930,500)), im_3, im_2, im_2.resize((800,300)), im_2, im_2, im_2.resize((250,300)), im_2.resize((250,295)), \
+            im_2, im_2, im_2, im_2, im_2, im_2,im_2,im_2,im_3]
     paste_by_size(out_size, imgs).show()
 
 

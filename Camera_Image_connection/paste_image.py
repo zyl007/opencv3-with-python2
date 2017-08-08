@@ -20,15 +20,46 @@ def paste_by_size(out_size, imgs):
     :param imgs: 输入的所有box
     :return:
     """
-    areas = [{i: im.size[0] * im.size[1]} for i, im in enumerate(imgs)]  # idx: area
-
-    asc_ares = sorted(areas, key=lambda x:x.values())  # 按照面积大小排序 升序
+    print(type(imgs), imgs[0])
+    areas = [(i, im.size[0] * im.size[1]) for i, im in enumerate(imgs)]  # idx: area
+    w, h = out_size
+    print(areas)
+    areas = sorted(areas, key = lambda x:x[1], reverse=True)  # 按照面积大小排序 降序
     new_img = Image.new('RGB', out_size)
-    tmp_x, tmp_y = 0, 0
+    frist_x, frist_y = 0, 0
+    tmp_x, tmp_y = 0,0
     # todo 图片拼接核心功能
     # 按行拼接
     # 记录每一行第一个图的坐标 ，便于下次计算
-    pass
+    num = 0
+    while num < len(areas):
+        idx, _ = areas[num]
+        t_w, t_h = imgs[idx].size  # box宽高
+        if (w-t_w-tmp_y) >= 0:
+
+            new_img.paste(imgs[idx], (tmp_y, tmp_x))  # 指定位置paste图片
+            tmp_y += t_w
+            frist_x = max(frist_x, tmp_x + t_h)
+
+        elif(h-t_h-tmp_x) >=0:
+            tmp_x = frist_x
+            tmp_y = 0
+
+            new_img.paste(imgs[idx], (tmp_y, tmp_x))
+            tmp_y += t_w
+            frist_x = max(frist_x, tmp_x + t_h)
+        else:
+            # new_img.save('new_img_%d.jpg'%num)
+            new_img.show()
+            print('new picture')
+            new_img = Image.new('RGB', out_size)
+            frist_x, frist_y = 0, 0
+            tmp_x, tmp_y = 0, 0
+        num += 1
+
+    return new_img
+
+
 
 
 
@@ -51,7 +82,11 @@ def paste_fixed_windows(out_size, imgs):
                 pass
     return new_img
 
-
+def main_test():
+    im_2 = Image.open('test_images/test.png')
+    imgs = [im_2.resize((930,500)), im_2, im_2, im_2.resize((800,300)), im_2, im_2, im_2.resize((250,300)), im_2.resize((250,295)), \
+            im_2, im_2, im_2, im_2, im_2, im_2,im_2,im_2,im_2]
+    paste_by_size(out_size, imgs).show()
 
 
 def main():
@@ -59,5 +94,6 @@ def main():
     imgs = [im_2, im_2, im_2, im_2, im_2, im_2, im_2, im_2, im_2, im_2]
     paste_fixed_windows(out_size, imgs).show()
 
-main()
+main_test()
+# main()
 

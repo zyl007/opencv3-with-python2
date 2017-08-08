@@ -19,7 +19,7 @@ pos, neg = "pos-", "neg-"
 
 detect = cv2.xfeatures2d.SIFT_create()  # SIFT特征
 extract = cv2.xfeatures2d.SIFT_create()
-
+# flann匹配算法
 flann_params = dict(algorithm=1, trees=5)
 flann = cv2.FlannBasedMatcher(flann_params, {})
 

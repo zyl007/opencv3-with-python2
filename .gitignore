@@ -13,3 +13,7 @@ video_demo/images/*
 *.pgm
 car_detection/CarData
 car-examples/CarData
+
+# 压缩包
+*.rar
+*.gz

@@ -85,7 +85,7 @@ def paste_by_size_test():
     # imgs = [im_2.resize((730,400)), im_3, im_3, im_2.resize((800,300)), im_2, im_3, im_3.resize((450,300)), im_2.resize((750,295)), \
     #         im_2, im_3, im_2, im_2, im_2.resize((500,600)), im_2,im_2,im_2,im_3,im_2, im_2, im_2, im_3, \
     #         im_2.resize((700, 600)), im_3, im_3, im_2, im_3, im_2, im_2, im_2]
-    print paste_by_size(out_size, imgs)
+    print(paste_by_size(out_size, imgs))
 
 
 def test():

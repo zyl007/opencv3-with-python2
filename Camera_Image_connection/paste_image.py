@@ -31,7 +31,7 @@ def load_imgs(txtfile, path):
     while frame_names:
         for name in frame_names:
             file_name = name.split('/')[-1][:-4]
-            print file_name,box_file_location.get(file_name)
+            print(file_name,box_file_location.get(file_name))
             if box_file_location.get(file_name):  # 有标记box才进行处理
                 box, points = box_file_location(file_name)
                 x_min, y_min, x_max, y_max = map(float, points)
